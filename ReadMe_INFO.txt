@@ -120,3 +120,5 @@ _______________________________________________ЭТАПЫ СОЗДАНИЯ ЭТ�
 
 php artisan make:provider BlogServiceProvider
 идем в `app/Providers/BlogServiceProvider.php` и там прописываем метод  - `public function topMenu() {..}`
+___добавить эту инфу в Helper и в файл `laravel_info.txt`
+ + что пишем в Ф-ю boot()??

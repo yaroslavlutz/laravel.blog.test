@@ -31,7 +31,7 @@ class Article extends Model
 
 
     /** (!!!) */
-    /** Scope - статистика в Админке. Берем их базы последние записи
+    /** Scope - статистика в Админке. Берем из базы последние записи
      */
     public function scopeLastArticles( $query, $count ) {
         return $query->orderBy('created_at', 'desc') //сортировка по дате создания в обратном порядке(т/е сначала идут последние добавленные записи
