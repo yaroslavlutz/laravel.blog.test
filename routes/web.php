@@ -15,6 +15,9 @@ Route::get('/', function() {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/blog/category/{alias?}', 'BlogController@category')->name('category');
+Route::get('/blog/article/{alias?}', 'BlogController@article')->name('article');
+
 
 /** 2) FOR BACKEND part (Admin-Panel).
 */ /* Route::group( [ 'prefix'=>'admin', 'namespace' => 'Admin', 'middleware'=>['role:admin', 'auth'] ], function() { */

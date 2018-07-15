@@ -28,7 +28,7 @@ class BlogServiceProvider extends ServiceProvider
     // Top menu for users
     public function topMenu() {
         View::composer('layouts.header', function($view) {
-            $view->with( 'categories',  \App\Category::where('parent_cat_id', '=', 0)->where('published', 1)->get() ); //коллекция Категорий родительских(у которых поле `parent_cat_id` == 0) и только те категории,что опубликованы
+            $view->with( 'categories',  Category::where('parent_cat_id','=',0)->where('published', 1)->get() ); //коллекция Категорий родительских(у которых поле `parent_cat_id` == 0) и только те категории,что опубликованы
         });
     }
 
