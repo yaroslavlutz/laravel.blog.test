@@ -3,8 +3,9 @@ Test accounts - Login / Password:
     2) littus (littus@i.ua) / 654321
     3) fatHomer (homer@mail.us) / 123456
 ==================================================================================
-git add .
-git commit -m 'Install CheckEditor and start use npm_run_dev with SASS'
+git status
+sudo git add .
+sudo git commit -m 'Install CheckEditor and start use npm_run_dev with SASS'
 git branch development
 git status
 git checkout development //master
@@ -122,3 +123,7 @@ php artisan make:provider BlogServiceProvider
 идем в `app/Providers/BlogServiceProvider.php` и там прописываем метод  - `public function topMenu() {..}`
 ___добавить эту инфу в Helper и в файл `laravel_info.txt`
  + что пишем в Ф-ю boot()??
+
+
+
+7) СИСТЕМА УПРАВЛЕНИЯ ПОЛЬЗОВАТЕЛЯМИ:

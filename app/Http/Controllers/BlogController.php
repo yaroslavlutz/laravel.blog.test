@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-
-
     /** @param $alias
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     */

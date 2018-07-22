@@ -23,8 +23,8 @@
     <tbody>
       @forelse ($articles as $article)
         <tr>
-          <td class="text-center">{{$article->title}}</td>
-          <td class="text-center">{{$article->published}}</td>
+          <td class="text-center">{{ $article->title }}</td>
+          <td class="text-center">{{ $article->published }}</td>
           <td class="text-center">
             <a href="{{ route('admin_article_edit', ['id' => $article->id]) }}" type="btn" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
           </td>

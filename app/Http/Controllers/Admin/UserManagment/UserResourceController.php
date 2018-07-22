@@ -1,0 +1,110 @@
+<?php
+namespace App\Http\Controllers\Admin\UserManagment;
+
+use App\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class UserResourceController extends Controller
+{
+    /** Display a listing of the resource.
+     * @return \Illuminate\Http\Response
+   */
+    public function index()
+    {
+        return view('admin.user_managment.users.index',[
+            'users' => User::paginate(5)
+        ]);
+    }
+
+    /** Display the specified resource.
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+    */
+    public function show(User $user){}
+
+
+    /** Show the form for creating a new resource.
+     * @return \Illuminate\Http\Response
+    */
+    public function create()
+    {
+        return view('admin.user_managment.users.create',[
+            'users' => []
+        ]);
+    }
+
+    /** Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+    */
+    public function store(Request $request)
+    {
+        $validator = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        User::create([
+            'name' => $request['name'],  //OR: $request->input('name')
+            'email' => $request['email'], //OR: $request->input('email')
+            'password' => bcrypt($request['password']), //or Hash::make($request['password'])
+        ]);
+
+        return redirect()->route('admin_user_managment');
+    }
+
+
+    /** Show the form for editing the specified resource.
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+    */
+    public function edit(User $user)
+    {
+        return view('admin.user_managment.users.edit',[
+            'user' => $user
+        ]);
+    }
+
+    /** Update the specified resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+    */
+    public function update(Request $request, User $user)
+    {
+        $validator = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                \Illuminate\Validation\Rule::unique('users')->ignore($user->id),
+            ], //OR: 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
+
+        $user->name = $request['name'];  //OR: $request->input('name')
+        $user->email = $request['email'];  //OR: $request->input('email')
+        if( $request['password'] ){ $user->password = bcrypt($request['password']); }
+
+        if( $user->save() ){
+            return redirect()->route('admin_user_managment');
+        }
+    }
+
+
+    /** Remove the specified resource from storage.
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+    */
+    public function destroy(User $user)
+    {
+        if( $user->delete() ){
+            return redirect()->route('admin_user_managment');
+        }
+    }
+
+}

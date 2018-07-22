@@ -42,7 +42,7 @@ Route::group( [ 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth'] 
         /* For: laravel.blog.test/admin/article */
     Route::resource('/article', 'ArticleResourceController', [
         'names'=>[
-            'index'=>'admin_articles_show',    //laravel.blog.test/admin/article
+            'index'=>'admin_articles_show',     //laravel.blog.test/admin/article
             'show'=>'admin_article_show',       //laravel.blog.test/admin/article/{id}
             'create'=>'admin_article_create',   //laravel.blog.test/admin/article/create
             'store'=>'admin_article_store',     //POST
@@ -51,5 +51,19 @@ Route::group( [ 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth'] 
             'destroy'=>'admin_article_destroy', //DELETE
         ]
     ]);
+
+    /* For: laravel.blog.test/admin/user_managment/user */
+    Route::group(['prefix'=>'user_managment', 'namespace'=>'UserManagment'], function(){ //т.к.этот группа вложена в группу 'namespace'=>'Admin', то теперь подразумевается такой namespace - Admin/UserManagment
+        Route::resource('/user', 'UserResourceController', [
+            'names'=>[
+                'index'=>'admin_user_managment', //laravel.blog.test/admin/user_managment/user
+                'create'=>'admin_user_create',   //laravel.blog.test/admin/user_managment/create
+                'store'=>'admin_user_store',     //POST
+                'edit'=>'admin_user_edit',       //laravel.blog.test/admin/user_managment/user/{id}/edit
+                'update'=>'admin_user_update',   //PUT
+                'destroy'=>'admin_user_destroy', //DELETE
+            ]
+        ]);
+    });
 
 });  //__/Route::group( [ 'prefix'=>'admin', 'middleware'=>['auth'] ]
