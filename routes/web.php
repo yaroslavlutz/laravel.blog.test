@@ -20,50 +20,49 @@ Route::get('/blog/article/{alias?}', 'BlogController@article')->name('article');
 
 
 /** 2) FOR BACKEND part (Admin-Panel).
-*/ /* Route::group( [ 'prefix'=>'admin', 'namespace' => 'Admin', 'middleware'=>['role:admin', 'auth'] ], function() { */
-Route::group( [ 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth'] ], function() {  //'namespace' => 'Admin', чтобы теперь в роутах для Admin-part не указывать 'uses'=>'Admin\DashboardController@index'
-
+*/
+Route::group( [ 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth'] ], function() {
         /* For: laravel.blog.test/admin */
     Route::get('/', ['uses'=>'DashboardController@index', 'as'=>'admin_index']); //OR: Route::get(..)->name('admin_index');
 
         /* For: laravel.blog.test/admin/category */
     Route::resource('/category', 'CategoryResourceController', [
         'names'=>[
-            'index'=>'admin_categories_show',    //laravel.blog.test/admin/category
-            'show'=>'admin_category_show',       //laravel.blog.test/admin/category/{id}
-            'create'=>'admin_category_create',   //laravel.blog.test/admin/category/create
-            'store'=>'admin_category_store',     //POST
-            'edit'=>'admin_category_edit',       //laravel.blog.test/admin/category/{id}/edit
-            'update'=>'admin_category_update',   //PUT
-            'destroy'=>'admin_category_destroy', //DELETE
+            'index'=>'admin_categories_show',
+            'show'=>'admin_category_show',
+            'create'=>'admin_category_create',
+            'store'=>'admin_category_store', 
+            'edit'=>'admin_category_edit',
+            'update'=>'admin_category_update',
+            'destroy'=>'admin_category_destroy',
             ]
     ]);
 
         /* For: laravel.blog.test/admin/article */
     Route::resource('/article', 'ArticleResourceController', [
         'names'=>[
-            'index'=>'admin_articles_show',     //laravel.blog.test/admin/article
-            'show'=>'admin_article_show',       //laravel.blog.test/admin/article/{id}
-            'create'=>'admin_article_create',   //laravel.blog.test/admin/article/create
-            'store'=>'admin_article_store',     //POST
-            'edit'=>'admin_article_edit',       //laravel.blog.test/admin/article/{id}/edit
-            'update'=>'admin_article_update',   //PUT
-            'destroy'=>'admin_article_destroy', //DELETE
+            'index'=>'admin_articles_show',
+            'show'=>'admin_article_show',
+            'create'=>'admin_article_create',
+            'store'=>'admin_article_store',
+            'edit'=>'admin_article_edit',
+            'update'=>'admin_article_update',
+            'destroy'=>'admin_article_destroy',
         ]
     ]);
 
     /* For: laravel.blog.test/admin/user_managment/user */
-    Route::group(['prefix'=>'user_managment', 'namespace'=>'UserManagment'], function(){ //т.к.этот группа вложена в группу 'namespace'=>'Admin', то теперь подразумевается такой namespace - Admin/UserManagment
+    Route::group(['prefix'=>'user_managment', 'namespace'=>'UserManagment'], function(){
         Route::resource('/user', 'UserResourceController', [
             'names'=>[
-                'index'=>'admin_user_managment', //laravel.blog.test/admin/user_managment/user
-                'create'=>'admin_user_create',   //laravel.blog.test/admin/user_managment/create
-                'store'=>'admin_user_store',     //POST
-                'edit'=>'admin_user_edit',       //laravel.blog.test/admin/user_managment/user/{id}/edit
-                'update'=>'admin_user_update',   //PUT
-                'destroy'=>'admin_user_destroy', //DELETE
+                'index'=>'admin_user_managment',
+                'create'=>'admin_user_create',
+                'store'=>'admin_user_store',
+                'edit'=>'admin_user_edit',
+                'update'=>'admin_user_update',
+                'destroy'=>'admin_user_destroy',
             ]
         ]);
     });
 
-});  //__/Route::group( [ 'prefix'=>'admin', 'middleware'=>['auth'] ]
+});

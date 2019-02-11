@@ -47,9 +47,9 @@ class UserResourceController extends Controller
         ]);
 
         User::create([
-            'name' => $request['name'],  //OR: $request->input('name')
-            'email' => $request['email'], //OR: $request->input('email')
-            'password' => bcrypt($request['password']), //or Hash::make($request['password'])
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
         ]);
 
         return redirect()->route('admin_user_managment');
@@ -82,12 +82,12 @@ class UserResourceController extends Controller
                 'email',
                 'max:255',
                 \Illuminate\Validation\Rule::unique('users')->ignore($user->id),
-            ], //OR: 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            ],
             'password' => 'nullable|string|min:6|confirmed',
         ]);
 
-        $user->name = $request['name'];  //OR: $request->input('name')
-        $user->email = $request['email'];  //OR: $request->input('email')
+        $user->name = $request['name'];
+        $user->email = $request['email'];
         if( $request['password'] ){ $user->password = bcrypt($request['password']); }
 
         if( $user->save() ){
@@ -106,5 +106,4 @@ class UserResourceController extends Controller
             return redirect()->route('admin_user_managment');
         }
     }
-
 }

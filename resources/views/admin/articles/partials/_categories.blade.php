@@ -1,5 +1,4 @@
 @foreach ($categories as $category)
-    <!--Этот кусок кода единый для формы создания новой Article и обновления сущест.Article, поэтому тут проверка, - если есть ID Article, то значит на редактирование, нет ID Article - на создание новой Article -->
     <option value="{{ $category->id or "" }}"
         @isset($article->id) {{--Если существует ID Article, то мы редактируем Article, а не создаем--}}
             @foreach ($article->categories as $category_article)

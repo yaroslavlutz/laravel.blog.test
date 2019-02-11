@@ -15,7 +15,7 @@ class BlogController extends Controller
         $category = Category::where('alias',$alias)->first();
         return view('blog.category', [
             'category' => $category,
-            'articles' => $category->articles()->where('published', 1)->paginate(5) //`articles()` - полиморфная связь (см.`public function articles()` в `app/Category.php`)
+            'articles' => $category->articles()->where('published', 1)->paginate(5)
         ]);
     }
 

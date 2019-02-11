@@ -1,5 +1,4 @@
 <label for="">STATUS:</label>
-<!--Эта форма единая для создания новой Категории и обновления сущест.Категории, поэтому тут проверка, - если есть ID Категории,то значит на редактирование, нет ID Категории - на создание новой -->
 <select class="form-control" name="published">
     @if ( isset($category->id) ) {{--Обновление Категории--}}
         <option value="0" @if ( $category->published == 0 ) selected="" @endif>Не опубликовано</option>

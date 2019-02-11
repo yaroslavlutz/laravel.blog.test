@@ -8,7 +8,6 @@
     </div>
 @endif
 
-<!--Эта форма единая для создания нового Юзера(User) и обновления сущест.Юзера(User)-->
 <label for="">Name</label>
 <input type="text" class="form-control" name="name" placeholder="Name" value="@if( old('name') ) {{ old('name') }} @else{{ $user->name or "" }} @endif" required>
 

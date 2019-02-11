@@ -1,5 +1,4 @@
 <label for="">STATUS:</label>
-<!--Эта форма единая для создания новой Новости(Article) и обновления сущест.Новости(Article), поэтому тут проверка, - если есть ID Article,то значит на редактирование, нет ID Article - на создание новой -->
 <select class="form-control" name="published">
     @if( isset($article->id ) ) {{--Обновление Article--}}
         <option value="0" @if ( $article->published == 0 ) selected="" @endif>Не опубликовано</option>
@@ -17,8 +16,7 @@
 <input class="form-control" type="text" name="alias" placeholder="Автоматическая генерация" value="{{ $article->alias or "" }}" readonly="">
 
 <label for="">Родительская категория</label>
-<select class="form-control" name="categories[]" multiple=""> <!-- name="categories[]" - это будет массив,т.к.Категория для определенной новости может быть присвоена не одна,а несколько-->
-
+<select class="form-control" name="categories[]" multiple="">
     {{-- Categories include --}}
     @include('admin.articles.partials._categories', ['categories' => $categories])
 </select>

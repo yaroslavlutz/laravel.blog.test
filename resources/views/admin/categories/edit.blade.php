@@ -10,7 +10,7 @@
     <hr/>
 
     <form class="form-horizontal" action="{{ route('admin_category_update', ['id' => $category->id]) }}" method="POST">
-        {{ method_field('put') }} <!--OR: <input type="hidden" name="_method" value="PUT">-->
+        {{ method_field('put') }}
         {{ csrf_field() }} {{--OR: <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
         {{-- Form include --}}

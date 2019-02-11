@@ -31,7 +31,7 @@
                         <form class="form-horizontal" name="admin_delete_article"
                               onsubmit="if( confirm('Delete?!') ){ return true }else{ return false }"
                               action="{{ route('admin_user_destroy', ['id' => $user->id]) }}" method="post" novalidate>
-                              {{ method_field('delete') }} <!--OR: <input type="hidden" name="_method" value="DELETE">-->
+                              {{ method_field('delete') }}
                               {{ csrf_field() }} {{--OR: <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
                             <button type="submit" class="btn btn-danger"> <i class="fa fa-trash-o"></i> </button>
